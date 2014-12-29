@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+        version="2.1"
+        xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm">
+
+    <persistence-unit-metadata>
+        <!-- Ignore all annotations, all mapping metadata in XML files -->
+        <xml-mapping-metadata-complete/>
+    </persistence-unit-metadata>
+
+    <entity class="com.scotch.test.jpa.hibernate.entity.Customer" name="Customer">
+        <table name="customer"/>
+        <attributes>
+            <id name="id">
+                <!--<generated-value strategy="IDENTITY"/>-->
+            </id>
+            <basic name="name"/>
+            <basic name="password"/>
+        </attributes>
+    </entity>
+
+    <entity class="com.scotch.test.jpa.hibernate.entity.Category" name="Category">
+        <table name="category"/>
+        <attributes>
+            <id name="id">
+                <!--<generated-value strategy="IDENTITY"/>-->
+            </id>
+            <basic name="title"/>
+            <basic name="description"/>
+            <one-to-many name="commodities" target-entity="com.scotch.test.jpa.hibernate.entity.Commodity" mapped-by="category"/>
+        </attributes>
+    </entity>
+
+    <entity class="com.scotch.test.jpa.hibernate.entity.Commodity" name="Commodity">
+        <table name="commodity"/>
+        <attributes>
+            <id name="id">
+                <!--<generated-value strategy="IDENTITY"/>-->
+            </id>
+            <basic name="title"/>
+            <basic name="description"/>
+            <many-to-one name="category" fetch="LAZY">
+                <join-column name="category_id"/>
+            </many-to-one>
+            <!--<basic name="price"/>-->
+
+        </attributes>
+    </entity>
+
+    <entity class="com.scotch.test.jpa.hibernate.entity.Indent" name="Indent">
+        <table name="indent" />
+        <attributes>
+            <id name="id">
+                <!--<generated-value strategy="IDENTITY"/>-->
+            </id>
+            <basic name="description"></basic>
+            <many-to-one name="customer" fetch="LAZY">
+                <join-column name="customer_id" />
+            </many-to-one>
+            <one-to-many name="commodities" fetch="LAZY">
+                <join-table name="indent_item">
+                    <join-column name="indent_id" referenced-column-name="id"/>
+                    <inverse-join-column name="commodity_id" referenced-column-name="id" unique="true"/>
+                </join-table>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+</entity-mappings>
