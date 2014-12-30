@@ -43,11 +43,10 @@
             </id>
             <basic name="title"/>
             <basic name="description"/>
+            <basic name="price"/>
             <many-to-one name="category" fetch="LAZY">
                 <join-column name="category_id"/>
             </many-to-one>
-            <!--<basic name="price"/>-->
-
         </attributes>
     </entity>
 

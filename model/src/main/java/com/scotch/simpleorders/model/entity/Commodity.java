@@ -1,5 +1,7 @@
 package com.scotch.simpleorders.model.entity;
 
+import java.math.BigDecimal;
+
 /**
  * Created by sutupin on 26.12.2014.
  */
@@ -8,7 +10,7 @@ public class Commodity {
     private String title;
     private String description;
     private Category category;
-//    private double price; // todo: figure out
+    private BigDecimal price; // todo: figure out
 
     public int getId() {
         return id;
@@ -42,13 +44,13 @@ public class Commodity {
         this.category = category;
     }
 
-//    public double getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(double price) {
-//        this.price = price;
-//    }
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     @Override
     public String toString() {
