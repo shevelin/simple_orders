@@ -1,14 +1,8 @@
 package com.scotch.simpleorders.dao.impl;
 
-import com.scotch.simpleorders.model.entity.Commodity;
 import com.scotch.simpleorders.model.entity.Customer;
-import com.scotch.simpleorders.model.entity.Indent;
 import com.scotch.simpleorders.dao.impl.util.FactoryHolder;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.util.List;
 
 /**
@@ -16,7 +10,7 @@ import java.util.List;
  */
 public class JpaTest {
     public static void main(String[] args) throws Exception {
-        JpaCustomerDao service = new JpaCustomerDao();
+        JpaCustomerDaoBak service = new JpaCustomerDaoBak();
 
         List<Customer> customers = service.getAll();
 
