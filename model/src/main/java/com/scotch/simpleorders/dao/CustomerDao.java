@@ -1,6 +1,6 @@
 package com.scotch.simpleorders.dao;
 
-import com.scotch.simpleorders.model.entity.Customer;
+import com.scotch.simpleorders.entity.Customer;
 import java.util.List;
 
 /**

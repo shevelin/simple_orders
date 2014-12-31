@@ -1,9 +1,9 @@
 package com.scotch.simpleorders.dao;
 
-import com.scotch.simpleorders.model.entity.Commodity;
-import com.scotch.simpleorders.model.entity.Customer;
-import com.scotch.simpleorders.model.entity.Indent;
-import com.scotch.simpleorders.model.entity.IndentStatus;
+import com.scotch.simpleorders.entity.Commodity;
+import com.scotch.simpleorders.entity.Customer;
+import com.scotch.simpleorders.entity.Indent;
+import com.scotch.simpleorders.entity.IndentStatus;
 
 import java.util.List;
 

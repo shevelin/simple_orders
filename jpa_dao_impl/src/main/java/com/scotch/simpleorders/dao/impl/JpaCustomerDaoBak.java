@@ -1,8 +1,7 @@
 package com.scotch.simpleorders.dao.impl;
 
-import com.scotch.simpleorders.dao.CustomerDao;
 import com.scotch.simpleorders.dao.impl.util.FactoryHolder;
-import com.scotch.simpleorders.model.entity.Customer;
+import com.scotch.simpleorders.entity.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

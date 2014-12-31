@@ -1,4 +1,4 @@
-package com.scotch.simpleorders.model.entity;
+package com.scotch.simpleorders.entity;
 
 /**
  * Created by sutupin on 30.12.2014.

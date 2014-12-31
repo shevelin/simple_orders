@@ -1,4 +1,4 @@
-package com.scotch.simpleorders.model.entity;
+package com.scotch.simpleorders.entity;
 
 import java.util.List;
 

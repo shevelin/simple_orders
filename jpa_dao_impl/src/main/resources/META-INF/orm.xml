@@ -9,7 +9,7 @@
         <xml-mapping-metadata-complete/>
     </persistence-unit-metadata>
 
-    <entity class="com.scotch.simpleorders.model.entity.Customer" name="Customer" access="FIELD">
+    <entity class="com.scotch.simpleorders.entity.Customer" name="Customer" access="FIELD">
         <table name="customer"/>
         <attributes>
             <id name="id">
@@ -21,7 +21,7 @@
         </attributes>
     </entity>
 
-    <entity class="com.scotch.simpleorders.model.entity.Category" name="Category" access="FIELD">
+    <entity class="com.scotch.simpleorders.entity.Category" name="Category" access="FIELD">
         <table name="category"/>
         <attributes>
             <id name="id">
@@ -30,11 +30,11 @@
             </id>
             <basic name="title"/>
             <basic name="description"/>
-            <one-to-many name="commodities" target-entity="com.scotch.simpleorders.model.entity.Commodity" mapped-by="category"/>
+            <one-to-many name="commodities" target-entity="com.scotch.simpleorders.entity.Commodity" mapped-by="category"/>
         </attributes>
     </entity>
 
-    <entity class="com.scotch.simpleorders.model.entity.Commodity" name="Commodity" access="FIELD">
+    <entity class="com.scotch.simpleorders.entity.Commodity" name="Commodity" access="FIELD">
         <table name="commodity"/>
         <attributes>
             <id name="id">
@@ -50,7 +50,7 @@
         </attributes>
     </entity>
 
-    <entity class="com.scotch.simpleorders.model.entity.Indent" name="Indent" access="FIELD">
+    <entity class="com.scotch.simpleorders.entity.Indent" name="Indent" access="FIELD">
         <table name="indent" />
         <attributes>
             <id name="id">

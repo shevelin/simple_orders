@@ -1,16 +1,15 @@
-package com.scotch.simpleorders.model.entity;
+package com.scotch.simpleorders.entity;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by sutupin on 26.12.2014.
  */
-public class Commodity {
+public class Category {
     private int id;
     private String title;
     private String description;
-    private Category category;
-    private BigDecimal price; // todo: figure out
+    private List<Commodity> commodities;
 
     public int getId() {
         return id;
@@ -36,25 +35,16 @@ public class Commodity {
         this.description = description;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Commodity> getCommodities() {
+        return commodities;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setCommodities(List<Commodity> commodities) {
+        this.commodities = commodities;
     }
 
     @Override
     public String toString() {
-        return "Commodity [id=" + id + ", title=" + title + ", description=" + description /*+ ",category=" + category*/ +"]";
+        return "Category [id=" + id + ", title=" + title + ", description=" + description + "]";
     }
-
 }

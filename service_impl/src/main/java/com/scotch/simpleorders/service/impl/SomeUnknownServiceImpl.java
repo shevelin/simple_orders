@@ -1,8 +1,8 @@
 package com.scotch.simpleorders.service.impl;
 
 
-import com.scotch.simpleorders.model.entity.Commodity;
-import com.scotch.simpleorders.model.entity.Customer;
+import com.scotch.simpleorders.entity.Commodity;
+import com.scotch.simpleorders.entity.Customer;
 import com.scotch.simpleorders.service.SomeUnknownService;
 
 import java.util.List;

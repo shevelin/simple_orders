@@ -1,7 +1,7 @@
 package com.scotch.simpleorders.dao.impl;
 
 import com.scotch.simpleorders.dao.CategoryDao;
-import com.scotch.simpleorders.model.entity.Category;
+import com.scotch.simpleorders.entity.Category;
 
 import java.util.List;
 
