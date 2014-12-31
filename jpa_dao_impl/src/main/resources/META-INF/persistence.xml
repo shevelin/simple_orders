@@ -15,8 +15,8 @@
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/scotchtestdb" />
-            <property name="javax.persistence.jdbc.user" value="${user}" />
-            <property name="javax.persistence.jdbc.password" value="${pwd}" />
+            <property name="javax.persistence.jdbc.user" value="dummyUser" />
+            <property name="javax.persistence.jdbc.password" value="dummyPassword" />
             
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
             <property name="hibernate.show_sql" value="true"/>

@@ -27,7 +27,7 @@ CREATE TABLE commodity (
 	title		text	NOT NULL,
 	description	text	NOT NULL,
 	category_id	integer REFERENCES category (id) NOT NULL,
-	price		money	NOT NULL	
+	price		numeric	NOT NULL	
 );
 
 DROP SEQUENCE IF EXISTS indent_id_seq CASCADE;
