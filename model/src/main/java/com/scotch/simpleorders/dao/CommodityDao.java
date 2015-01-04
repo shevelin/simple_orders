@@ -15,5 +15,4 @@ interface CommodityDao {
     List<Commodity> getAll();
     List<Commodity> getAllForCategory(Category category);
     Commodity getById(int id);
-
 }

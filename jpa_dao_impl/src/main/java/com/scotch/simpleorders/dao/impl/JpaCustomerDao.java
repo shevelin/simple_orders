@@ -10,37 +10,15 @@ import java.util.List;
 /**
  * Created by sutupin on 30.12.2014.
  */
-public class JpaCustomerDao implements CustomerDao {
-    private EntityManager getEntityManager() {
-        return ManagerHolder.getManager();
+public class JpaCustomerDao extends AbstractJpaDao<Customer, Integer> implements CustomerDao {
+    @Override
+    protected String getAllQueryString() {
+        return "Select a From Customer a";
     }
 
     @Override
-    public Customer add(Customer newCustomer) {
-        getEntityManager().persist(newCustomer);
-        return getEntityManager().createQuery("SELECT c FROM Customer c WHERE c.name LIKE :custName", Customer.class)
-                .setParameter("custName", newCustomer.getName()).getSingleResult();
-    }
-
-    @Override
-    public Customer update(Customer dirtyCustomer) {
-        return getEntityManager().merge(dirtyCustomer);
-    }
-
-    @Override
-    public void remove(Customer customer) {
-        getEntityManager().remove(customer);
-    }
-
-    @Override
-    public List<Customer> getAll() {
-        List<Customer> resultList = getEntityManager().createQuery("Select a From Customer a", Customer.class)
-                .getResultList();
-        return resultList;
-    }
-
-    @Override
-    public Customer getById(int id) {
-        return getEntityManager().find(Customer.class, id);
+    protected Customer getByUnique(Customer customer) {
+        return entityManager.createQuery("SELECT c FROM Customer c WHERE c.name LIKE :custName", entityClass)
+                .setParameter("custName", customer.getName()).getSingleResult();
     }
 }

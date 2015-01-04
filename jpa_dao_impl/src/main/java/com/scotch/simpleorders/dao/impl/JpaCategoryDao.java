@@ -8,29 +8,15 @@ import java.util.List;
 /**
  * Created by sutupin on 30.12.2014.
  */
-public class JpaCategoryDao implements CategoryDao {
+public class JpaCategoryDao extends AbstractJpaDao<Category, Integer> implements CategoryDao {
     @Override
-    public Category add(Category newCategory) {
-        return null;
+    protected Category getByUnique(Category category) {
+        return entityManager.createQuery("SELECT c FROM Category c WHERE c.title LIKE :categoryTitle", entityClass)
+                .setParameter("categoryTitle", category.getTitle()).getSingleResult();
     }
 
     @Override
-    public Category update(Category dirtyCategory) {
-        return null;
-    }
-
-    @Override
-    public void remove(Category category) {
-
-    }
-
-    @Override
-    public List<Category> getAll() {
-        return null;
-    }
-
-    @Override
-    public Category getById(int id) {
-        return null;
+    protected String getAllQueryString() {
+        return "Select c From Category c";
     }
 }
