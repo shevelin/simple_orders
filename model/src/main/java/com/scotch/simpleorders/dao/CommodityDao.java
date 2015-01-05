@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by sutupin on 29.12.2014.
  */
-interface CommodityDao {
+public interface CommodityDao {
     Commodity add(Commodity newCommodity);
     Commodity update(Commodity dirtyCommodity);
     void remove(Commodity commodity);

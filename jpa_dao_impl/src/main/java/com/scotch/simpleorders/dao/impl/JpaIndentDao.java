@@ -11,44 +11,35 @@ import java.util.List;
 /**
  * Created by sutupin on 30.12.2014.
  */
-public class JpaIndentDao implements IndentDao {
+public class JpaIndentDao extends AbstractJpaDao<Indent, Integer> implements IndentDao {
+/*
     @Override
-    public Indent add(Indent newIndent) {
-        return null;
+    protected Indent getByUnique(Indent entity) {
+        return null; //todo: decide what to do with unique
     }
+*/
 
+/*
     @Override
-    public Indent update(Indent dirtyCategory) {
-        return null;
+    protected String getAllQueryString() {
+        return "Select i From Indent i";
     }
-
-    @Override
-    public void remove(Indent category) {
-
-    }
-
-    @Override
-    public List<Indent> getAll() {
-        return null;
-    }
+*/
 
     @Override
     public List<Indent> getAllForCustomer(Customer customer) {
-        return null;
+        return entityManager.createQuery("SELECT i FROM Indent i WHERE i.customer = :customerId", entityClass)
+                .setParameter("customerId", customer.getId()).getResultList();
     }
 
     @Override
     public List<Indent> getAllForStatus(IndentStatus status) {
-        return null;
+        return entityManager.createQuery("SELECT i FROM Indent i WHERE i.status = :indentStatus", entityClass)
+                .setParameter("indentStatus", status).getResultList();
     }
 
     @Override
     public List<Indent> getAllForCommodity(Commodity commodity) {
-        return null;
-    }
-
-    @Override
-    public Indent getById(int id) {
-        return null;
+        return null; //todo: ))
     }
 }
