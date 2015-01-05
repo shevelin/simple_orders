@@ -11,5 +11,5 @@ public interface CustomerDao {
     Customer update(Customer dirtyCustomer);
     void remove(Customer commodity);
     List<Customer> getAll();
-    Customer getById(int id);
+    Customer getById(Integer id);
 }

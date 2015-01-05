@@ -18,5 +18,5 @@ public interface IndentDao {
     List<Indent> getAllForCustomer(Customer customer);
     List<Indent> getAllForStatus(IndentStatus status);
     List<Indent> getAllForCommodity(Commodity commodity);
-    Indent getById(int id);
+    Indent getById(Integer id);
 }

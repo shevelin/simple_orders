@@ -91,15 +91,14 @@ public abstract class AbstractJpaDao<E, K> {
         List<E> resultList = null;
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery cq = cb.createQuery();
+        CriteriaQuery<E> cq = cb.createQuery(entityClass);
         cq.from(entityClass);
-        TypedQuery<E> query = entityManager.createQuery(cq);
-        resultList = query.getResultList();
+        resultList = entityManager.createQuery(cq).getResultList();
 
         return resultList;
     }
 
-    public E getById(int id) {
+    public E getById(K id) {
         return entityManager.find(entityClass, id);
     }
     

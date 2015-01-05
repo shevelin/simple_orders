@@ -14,5 +14,5 @@ public interface CommodityDao {
     void removeAllForCategory(Category category);
     List<Commodity> getAll();
     List<Commodity> getAllForCategory(Category category);
-    Commodity getById(int id);
+    Commodity getById(Integer id);
 }

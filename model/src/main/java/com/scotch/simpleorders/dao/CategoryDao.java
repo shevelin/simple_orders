@@ -12,5 +12,5 @@ public interface CategoryDao {
     Category update(Category dirtyCategory);
     void remove(Category category);
     List<Category> getAll();
-    Category getById(int id);
+    Category getById(Integer id);
 }
