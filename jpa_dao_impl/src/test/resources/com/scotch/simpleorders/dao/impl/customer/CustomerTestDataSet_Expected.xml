@@ -1,0 +1,18 @@
+<!--
+<dataset>
+    <customer id="1" name="Serious Sam" password="password"/>
+</dataset>
+-->
+
+<dataset>
+<table name="customer">
+    <column>id</column>
+    <column>name</column>
+    <column>password</column>
+    <row>
+        <value>1</value>
+        <value>Serious Sam</value>
+        <value>password</value>
+    </row>
+</table>
+</dataset>

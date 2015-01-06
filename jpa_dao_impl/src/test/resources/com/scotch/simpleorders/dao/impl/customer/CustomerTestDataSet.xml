@@ -1,0 +1,32 @@
+<!--
+<dataset>
+&lt;!&ndash;
+    <customer id="nextval('customer_id_seq')" name="Serious Sam1" password="password"/>
+    <customer id="nextval('customer_id_seq')" name="Wild Bill1" password="password"/>
+    <customer id="nextval('customer_id_seq')" name="Dieter Bohlen1" password="password"/>
+    <customer id="nextval('customer_id_seq')" name="Tom Cruise1" password="password"/>
+    <customer id="nextval('customer_id_seq')" name="Vasya1" password="password"/>
+&ndash;&gt;
+</dataset>
+
+-->
+<!--<!DOCTYPE dataset SYSTEM "dataset.dtd">-->
+<dataset>
+    <table name="customer">
+        <column>id</column>
+        <column>name</column>
+        <column>password</column>
+<!--
+        <row>
+            <value>1</value>
+            <value>Serious Sam1</value>
+            <value>password</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>Wild Bill1</value>
+            <value>password</value>
+        </row>
+-->
+    </table>
+</dataset>
