@@ -1,10 +1,13 @@
 package com.scotch.simpleorders.dao.impl;
 
 import org.dbunit.DBTestCase;
+import org.dbunit.DatabaseUnitException;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
 import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
+import org.dbunit.operation.CompositeOperation;
 import org.dbunit.operation.DatabaseOperation;
 
 import java.io.IOException;
@@ -12,12 +15,28 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
  * Created by sutupin on 06.01.2015.
  */
 public abstract class DBUnitTestCase extends DBTestCase {
+    public static final DatabaseOperation SEQUENCE_RESETTER_POSTGRES = new DatabaseOperation() {
+        @Override
+        public void execute(IDatabaseConnection connection, IDataSet dataSet)
+                throws DatabaseUnitException, SQLException {
+            String[] tables = dataSet.getTableNames();
+            Statement statement = connection.getConnection().createStatement();
+            for (String table : tables) {
+                int startWith = dataSet.getTable(table).getRowCount() + 1;
+                statement.execute("alter sequence " + table + "_PK_SEQ RESTART WITH "+ startWith);
+
+            }
+        }
+    };
+
     public DBUnitTestCase(String name) {
         super(name);
 
@@ -25,17 +44,20 @@ public abstract class DBUnitTestCase extends DBTestCase {
         System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:postgresql://localhost:5432/scotchtestdb");
         System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "postgres");
         System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "gosha");
-        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_SCHEMA, "");
+        //System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_SCHEMA, "");
     }
 
     @Override
     protected DatabaseOperation getTearDownOperation() throws Exception {
-        return DatabaseOperation.DELETE_ALL;
+        return DatabaseOperation.NONE;
     }
 
     @Override
     protected DatabaseOperation getSetUpOperation() throws Exception {
-        return DatabaseOperation.CLEAN_INSERT;
+        //return DatabaseOperation.REFRESH;
+        //return DatabaseOperation.CLEAN_INSERT;
+
+        return new CompositeOperation(DatabaseOperation.CLEAN_INSERT, SEQUENCE_RESETTER_POSTGRES);
     }
 
     @Override
@@ -43,12 +65,16 @@ public abstract class DBUnitTestCase extends DBTestCase {
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new PostgresqlDataTypeFactory());
     }
 
+/*
     @Override
     protected void setUp() throws Exception {
         super.setUp();
 
         IDatabaseConnection iDBConnection = getConnection();
         Connection connection  = iDBConnection.getConnection();
+
+        DatabaseMetaData metaData = connection.getMetaData();
+
 
         connection.setAutoCommit(false);
         Statement statement = connection.createStatement();
@@ -61,8 +87,11 @@ public abstract class DBUnitTestCase extends DBTestCase {
         } catch (Exception e) {
             connection.rollback();
         }
+
+
     }
 
+*/
     private static String dropCreateSqlQueryString = null;
 
     private String getDropCreateSqlQueryString() throws IOException {
