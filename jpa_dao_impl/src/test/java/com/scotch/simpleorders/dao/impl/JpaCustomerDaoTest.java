@@ -4,6 +4,8 @@ import com.scotch.simpleorders.entity.Customer;
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
+import org.dbunit.database.DatabaseConfig;
+import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.filter.DefaultColumnFilter;
@@ -11,23 +13,25 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
 
 import com.scotch.simpleorders.dao.impl.util.FactoryHolder;
+import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.sql.Connection;
+import java.sql.Statement;
 
 /**
  * Created by sutupin on 05.01.2015.
  */
-public class JpaCustomerDaoTest extends DBTestCase {
+public class JpaCustomerDaoTest extends DBUnitTestCase {
     public JpaCustomerDaoTest(String name) {
         super(name);
 
-        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "org.postgresql.Driver");
-        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:postgresql://localhost:5432/scotchtestdb");
-        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "postgres");
-        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "gosha");
-        System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_SCHEMA, "");
     }
 
     @Override
@@ -38,18 +42,7 @@ public class JpaCustomerDaoTest extends DBTestCase {
                                 "com/scotch/simpleorders/dao/impl/customer/CustomerTestDataSet.xml"));
     }
 
-    @Override
-    protected DatabaseOperation getTearDownOperation() throws Exception {
-        return DatabaseOperation.DELETE;
-    }
-
-    @Override
-    protected DatabaseOperation getSetUpOperation() throws Exception {
-        return DatabaseOperation.DELETE;
-    }
-
     public void testAddNewCustomer() throws Exception {
-
         Customer newCustomer = new Customer();
         newCustomer.setName("Serious Sam");
         newCustomer.setPassword("password");
@@ -65,8 +58,7 @@ public class JpaCustomerDaoTest extends DBTestCase {
         customerDao.setEntityManager(entityManager);
 
         try {
-            customerDao.add(newCustomer); // todo:
-
+            customerDao.add(newCustomer);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
@@ -77,7 +69,6 @@ public class JpaCustomerDaoTest extends DBTestCase {
 
 
         IDataSet databaseDataSet = getConnection().createDataSet();
-
         ITable actualTable = databaseDataSet.getTable("customer");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(
