@@ -1,6 +1,6 @@
 package com.scotch.simpleorders.dao.impl;
 
-import com.scotch.simpleorders.dao.impl.util.FactoryHolder;
+
 import com.scotch.simpleorders.entity.Customer;
 
 import javax.persistence.EntityManager;
@@ -11,6 +11,7 @@ import java.util.List;
  * Created by sutupin on 26.12.2014.
  */
 public class JpaCustomerDaoBak {
+/*
     public List<Customer> getAll() throws Exception {
         List<Customer> resultList = null;
         EntityManager manager = FactoryHolder.getEntityManager();
@@ -142,4 +143,5 @@ public class JpaCustomerDaoBak {
 
     }
 
+*/
 }
