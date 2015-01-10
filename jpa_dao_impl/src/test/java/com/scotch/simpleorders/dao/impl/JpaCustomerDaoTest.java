@@ -10,7 +10,6 @@ import org.dbunit.operation.CompositeOperation;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Assert;
 import org.junit.Test;
-import org.hamcrest.CoreMatchers;
 
 import javax.persistence.EntityTransaction;
 import java.util.ArrayList;
