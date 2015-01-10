@@ -1,8 +1,11 @@
 package com.scotch.simpleorders.dao.impl;
 
+import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,6 +17,7 @@ import javax.persistence.Persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,10 +88,7 @@ public abstract class DBUnitTestCase {
                         .getResourceAsStream(resourceName));
     }
 
-
-
-    /*
-    public static final DatabaseOperation SEQUENCE_RESETTER_POSTGRES = new DatabaseOperation() {
+    public static final DatabaseOperation SEQUENCE_RESETTER = new DatabaseOperation() {
         @Override
         public void execute(IDatabaseConnection connection, IDataSet dataSet)
                 throws DatabaseUnitException, SQLException {
@@ -100,7 +101,6 @@ public abstract class DBUnitTestCase {
             }
         }
     };
-*/
 
 
 /*

@@ -1,7 +1,5 @@
 package com.scotch.simpleorders.dao.impl;
 
-import com.scotch.simpleorders.dao.impl.util.ManagerHolder;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;

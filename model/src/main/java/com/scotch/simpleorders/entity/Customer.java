@@ -48,4 +48,23 @@ public class Customer {
         return "Customer [id=" + id + ", name=" + name + ", password=" + password +"]";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+
+        Customer customer = (Customer) o;
+
+        if (!name.equals(customer.name)) return false;
+        if (!password.equals(customer.password)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + password.hashCode();
+        return result;
+    }
 }

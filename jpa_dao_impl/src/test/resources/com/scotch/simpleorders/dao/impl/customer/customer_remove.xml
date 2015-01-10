@@ -10,8 +10,8 @@
     <column>name</column>
     <column>password</column>
     <row>
-        <value>1</value>
-        <value>Serious Sam</value>
+        <value>2</value>
+        <value>Wild Bill</value>
         <value>password</value>
     </row>
 </table>
