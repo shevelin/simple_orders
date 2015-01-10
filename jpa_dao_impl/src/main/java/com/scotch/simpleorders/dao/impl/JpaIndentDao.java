@@ -12,20 +12,6 @@ import java.util.List;
  * Created by sutupin on 30.12.2014.
  */
 public class JpaIndentDao extends AbstractJpaDao<Indent, Integer> implements IndentDao {
-/*
-    @Override
-    protected Indent getByUnique(Indent entity) {
-        return null; //todo: decide what to do with unique
-    }
-*/
-
-/*
-    @Override
-    protected String getAllQueryString() {
-        return "Select i From Indent i";
-    }
-*/
-
     @Override
     public List<Indent> getAllForCustomer(Customer customer) {
         return entityManager.createQuery("SELECT i FROM Indent i WHERE i.customer = :customerId", entityClass)

@@ -10,21 +10,6 @@ import java.util.List;
  * Created by sutupin on 30.12.2014.
  */
 public class JpaCommodityDao extends AbstractJpaDao<Commodity, Integer> implements CommodityDao {
-/*
-    @Override
-    protected Commodity getByUnique(Commodity commodity) {
-        return entityManager.createQuery("SELECT c FROM Commodity c WHERE c.title LIKE :commodityTitle", entityClass)
-                .setParameter("commodityTitle", commodity.getTitle()).getSingleResult(); //todo: decide what to do with unique
-    }
-*/
-
-/*
-    @Override
-    protected String getAllQueryString() {
-        return "Select c From Commodity c";
-    }
-*/
-
     @Override
     public void removeAllForCategory(Category category) {
         entityManager.createQuery("DELETE FROM Commodity c WHERE c.category = :categoryId ").setParameter("categoryId", category.getId());
