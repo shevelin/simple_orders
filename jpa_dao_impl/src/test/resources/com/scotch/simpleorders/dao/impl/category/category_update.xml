@@ -1,0 +1,32 @@
+<dataset>
+    <table name="category">
+        <column>id</column>
+        <column>title</column>
+        <column>description</column>
+        <row>
+            <value>1</value>
+            <value>Sportswear</value>
+            <value>Sportswear category description</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>vegetables</value>
+            <value>Some description of vegetables category</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>shoes</value>
+            <value>Some description of shoes category</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>clothes</value>
+            <value>Some description of clothes category</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>tvs</value>
+            <value>Some description of tvs category</value>
+        </row>
+    </table>
+</dataset>

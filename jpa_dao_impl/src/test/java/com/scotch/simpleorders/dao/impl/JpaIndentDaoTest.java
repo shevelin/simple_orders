@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class JpaIndentDaoTest extends DBUnitTestCase {
 
+/*
     @Test
     public void testAddNew() throws Exception {
         IDataSet setupDataSet = getDataSet("com/scotch/simpleorders/dao/impl/indent/indent.xml");
@@ -217,5 +218,6 @@ public class JpaIndentDaoTest extends DBUnitTestCase {
 
         Assert.assertEquals(expected, actual);
     }
+*/
 
 }

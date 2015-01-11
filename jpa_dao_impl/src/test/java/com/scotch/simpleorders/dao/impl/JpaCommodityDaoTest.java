@@ -1,5 +1,6 @@
 package com.scotch.simpleorders.dao.impl;
 
+import com.scotch.simpleorders.entity.Category;
 import com.scotch.simpleorders.entity.Commodity;
 import org.dbunit.Assertion;
 import org.dbunit.dataset.IDataSet;
@@ -11,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import javax.persistence.EntityTransaction;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +27,20 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
 
         DatabaseOperation databaseOperation = new CompositeOperation(DatabaseOperation.CLEAN_INSERT, DBUnitTestCase.SEQUENCE_RESETTER);
         databaseOperation.execute(dbunitConnection, setupDataSet);
-        //DatabaseOperation.CLEAN_INSERT.execute(dbunitConnection, setupDataSet);
-
-        Commodity newCommodity = new Commodity();
-        newCommodity.setName("Jane Doe");
-        newCommodity.setPassword("password");
 
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
+
+        Commodity newCommodity = new Commodity();
+        newCommodity.setTitle("topinambour");
+        //newCommodity.setDescription("password");
+
+        JpaCategoryDao categoryDao = new JpaCategoryDao();
+        categoryDao.setEntityManager(entityManager);
+        Category category = categoryDao.getById(2);
+
+        newCommodity.setCategory(category);
+        newCommodity.setPrice(new BigDecimal(12.0));
 
         JpaCommodityDao commodityDao = new JpaCommodityDao();
         commodityDao.setEntityManager(entityManager);
@@ -51,11 +59,9 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
         IDataSet expectedDataSet = getDataSet("com/scotch/simpleorders/dao/impl/commodity/commodity_add.xml");
         ITable expectedTable = expectedDataSet.getTable("commodity");
 
-        ITable filteredActualTable = DefaultColumnFilter.includedColumnsTable(actualTable, expectedTable.getTableMetaData().getColumns());
-        //Assertion.assertEquals(expectedTable, filteredActualTable);
         Assertion.assertEquals(expectedTable, actualTable);
     }
-
+/*
     @Test
     public void testRemove() throws Exception {
         IDataSet setupDataSet = getDataSet("com/scotch/simpleorders/dao/impl/commodity/commodity.xml");
@@ -217,5 +223,6 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
 
         Assert.assertEquals(expected, actual);
     }
+*/
 
 }

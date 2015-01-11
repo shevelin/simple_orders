@@ -155,7 +155,7 @@ public class JpaCategoryDaoTest extends DBUnitTestCase {
 
 
     @Test
-    public void testGetALL() throws Exception {
+    public void testGetAll() throws Exception {
         IDataSet setupDataSet = getDataSet("com/scotch/simpleorders/dao/impl/category/category.xml");
 
         DatabaseOperation databaseOperation = new CompositeOperation(DatabaseOperation.CLEAN_INSERT, DBUnitTestCase.SEQUENCE_RESETTER);
@@ -176,18 +176,7 @@ public class JpaCategoryDaoTest extends DBUnitTestCase {
             throw new Exception(e);
         }
 
-        Category first = new Category();
-        first.setId(1); first.setTitle(""); first.setDescription("");
-
-        Category second = new Category();
-        second.setId(2); second.setTitle(""); second.setDescription("");
-
-
-        List<Category> expected = new ArrayList<Category>();
-        expected.add(first);
-        expected.add(second);
-
-        Assert.assertEquals(actual, expected);
+        Assert.assertEquals(actual.size(), 5);
     }
 
     @Test
@@ -213,7 +202,8 @@ public class JpaCategoryDaoTest extends DBUnitTestCase {
         }
 
         Category expected = new Category();
-        expected.setId(1); expected.setTitle(""); expected.setDescription("");
+        expected.setTitle("fruit");
+        expected.setDescription("Some description of fruit category");
 
         Assert.assertEquals(expected, actual);
     }

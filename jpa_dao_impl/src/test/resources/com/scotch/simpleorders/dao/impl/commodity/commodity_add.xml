@@ -1,34 +1,4 @@
 <dataset>
-    <table name="category">
-        <column>id</column>
-        <column>title</column>
-        <column>description</column>
-        <row>
-            <value>1</value>
-            <value>fruit</value>
-            <value>Some description of fruit category</value>
-        </row>
-        <row>
-            <value>2</value>
-            <value>vegetables</value>
-            <value>Some description of vegetables category</value>
-        </row>
-        <row>
-            <value>3</value>
-            <value>shoes</value>
-            <value>Some description of shoes category</value>
-        </row>
-        <row>
-            <value>4</value>
-            <value>clothes</value>
-            <value>Some description of clothes category</value>
-        </row>
-        <row>
-            <value>5</value>
-            <value>tvs</value>
-            <value>Some description of tvs category</value>
-        </row>
-    </table>
     <table name="commodity">
         <column>id</column>
         <column>title</column>
@@ -218,6 +188,13 @@
             </value>
             <value>5</value>
             <value>1560.0</value>
+        </row>
+        <row>
+            <value>26</value>
+            <value>topinambour</value>
+            <value/>
+            <value>2</value>
+            <value>12.0</value>
         </row>
 
     </table>

@@ -1,0 +1,133 @@
+<dataset>
+    <table name="indent">
+        <column>id</column>
+        <column>customer_id</column>
+        <column>description</column>
+        <column>status</column>
+
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>Some description of this order</value>
+            <value>NEW</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>1</value>
+            <value>Some description of this order</value>
+            <value>IN_PROCESS</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>3</value>
+            <value>Some description of this order</value>
+            <value>DONE</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>4</value>
+            <value>Some description of this order</value>
+            <value>NEW</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>4</value>
+            <value>Some description of this order</value>
+            <value>IN_PROCESS</value>
+        </row>
+
+    </table>
+
+    <table name="indent_item">
+        <column>id</column>
+        <column>indent_id</column>
+        <column>commodity_id</column>
+        <column>count</column>
+
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>10</value>
+            <value>5</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>2</value>
+            <value>11</value>
+            <value>2</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>1</value>
+            <value>8</value>
+            <value>3</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>4</value>
+            <value>3</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>5</value>
+            <value>12</value>
+            <value>8</value>
+        </row>
+        <row>
+            <value>6</value>
+            <value>3</value>
+            <value>10</value>
+            <value>2</value>
+        </row>
+        <row>
+            <value>7</value>
+            <value>1</value>
+            <value>10</value>
+            <value>7</value>
+        </row>
+        <row>
+            <value>8</value>
+            <value>2</value>
+            <value>4</value>
+            <value>6</value>
+        </row>
+        <row>
+            <value>9</value>
+            <value>3</value>
+            <value>24</value>
+            <value>9</value>
+        </row>
+        <row>
+            <value>10</value>
+            <value>4</value>
+            <value>23</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>11</value>
+            <value>5</value>
+            <value>2</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>12</value>
+            <value>1</value>
+            <value>4</value>
+            <value>3</value>
+        </row>
+        <row>
+            <value>13</value>
+            <value>2</value>
+            <value>7</value>
+            <value>45</value>
+        </row>
+        <row>
+            <value>14</value>
+            <value>3</value>
+            <value>8</value>
+            <value>3</value>
+        </row>
+
+    </table>
+</dataset>
