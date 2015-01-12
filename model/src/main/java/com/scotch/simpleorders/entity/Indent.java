@@ -11,7 +11,9 @@ public class Indent {
     private String description;
     private IndentStatus status;
 
-    private List<Commodity> commodities;
+//    private List<Commodity> commodities;
+
+    private List<IndentItem> indentItems;
 
     public int getId() {
         return id;
@@ -37,12 +39,22 @@ public class Indent {
         this.description = description;
     }
 
+/*
     public List<Commodity> getCommodities() {
         return commodities;
     }
 
     public void setCommodities(List<Commodity> commodities) {
         this.commodities = commodities;
+    }
+*/
+
+    public List<IndentItem> getIndentItems() {
+        return indentItems;
+    }
+
+    public void setIndentItems(List<IndentItem> indentItems) {
+        this.indentItems = indentItems;
     }
 
     public IndentStatus getStatus() {

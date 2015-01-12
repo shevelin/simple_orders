@@ -57,19 +57,31 @@
                 <generated-value strategy="SEQUENCE" generator="indent_id_gen"/>
                 <sequence-generator name="indent_id_gen" sequence-name="indent_id_seq" initial-value="1" allocation-size="1"/>
             </id>
-            <basic name="description"></basic>
+            <basic name="description"/>
             <basic name="status">
                 <enumerated>STRING</enumerated>
             </basic>
             <many-to-one name="customer" fetch="LAZY">
                 <join-column name="customer_id" />
             </many-to-one>
-            <one-to-many name="commodities" fetch="LAZY">
-                <join-table name="indent_item">
-                    <join-column name="indent_id" referenced-column-name="id"/>
-                    <inverse-join-column name="commodity_id" referenced-column-name="id" unique="true"/>
-                </join-table>
-            </one-to-many>
+            <one-to-many name="indentItems" target-entity="com.scotch.simpleorders.entity.IndentItem" mapped-by="indent"/>
+        </attributes>
+    </entity>
+
+    <entity class="com.scotch.simpleorders.entity.IndentItem" name="IndentItem" access="FIELD">
+        <table name="indent_item" />
+        <attributes>
+            <id name="id">
+                <generated-value strategy="SEQUENCE" generator="indent_item_id_gen" />
+                <sequence-generator name="indent_item_id_gen" sequence-name="indent_item_id_seq" initial-value="1" allocation-size="1"/>
+            </id>
+            <basic name="count"/>
+            <one-to-one name="commodity">
+                <join-column name="commodity_id" referenced-column-name="id" unique="true"/>
+            </one-to-one>
+            <one-to-one name="indent">
+                <join-column name="indent_id" referenced-column-name="id" unique="true"/>
+            </one-to-one>
         </attributes>
     </entity>
 

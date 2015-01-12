@@ -1,7 +1,6 @@
 package com.scotch.simpleorders.dao.impl;
 
-import com.scotch.simpleorders.entity.Customer;
-import com.scotch.simpleorders.entity.Indent;
+import com.scotch.simpleorders.entity.*;
 import org.dbunit.Assertion;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
@@ -20,7 +19,6 @@ import java.util.List;
  */
 public class JpaIndentDaoTest extends DBUnitTestCase {
 
-/*
     @Test
     public void testAddNew() throws Exception {
         IDataSet setupDataSet = getDataSet("com/scotch/simpleorders/dao/impl/indent/indent.xml");
@@ -31,23 +29,49 @@ public class JpaIndentDaoTest extends DBUnitTestCase {
 
         Indent newIndent = new Indent();
 
-
-        Customer customer =
-
-        newIndent.setCustomer();
-        newIndent.setDescription();
-        newIndent.setStatus();
-        newIndent.setCommodities();
-
-
-
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
 
         JpaIndentDao indentDao = new JpaIndentDao();
         indentDao.setEntityManager(entityManager);
+        JpaCustomerDao customerDao = new JpaCustomerDao();
+        customerDao.setEntityManager(entityManager);
+        JpaCommodityDao commodityDao = new JpaCommodityDao();
+        commodityDao.setEntityManager(entityManager);
 
         try {
+            Customer customer = customerDao.getById(1);
+            newIndent.setCustomer(customer);
+
+            newIndent.setDescription("Description of test indent");
+            newIndent.setStatus(IndentStatus.NEW);
+
+            List<IndentItem> items = new ArrayList<>();
+
+            IndentItem newIndentItem1 = new IndentItem();
+            newIndentItem1.setCommodity(commodityDao.getById(1));
+            newIndentItem1.setCount(5);
+            items.add(newIndentItem1);
+
+            IndentItem newIndentItem2 = new IndentItem();
+            newIndentItem2.setCommodity(commodityDao.getById(3));
+            newIndentItem2.setCount(7);
+            items.add(newIndentItem2);
+
+            IndentItem newIndentItem3 = new IndentItem();
+            newIndentItem3.setCommodity(commodityDao.getById(5));
+            newIndentItem3.setCount(9);
+            items.add(newIndentItem3);
+
+            IndentItem newIndentItem4 = new IndentItem();
+            newIndentItem4.setCommodity(commodityDao.getById(7));
+            newIndentItem4.setCount(11);
+            items.add(newIndentItem4);
+
+            // ?????
+
+
+            newIndent.setIndentItems(items);
             indentDao.add(newIndent);
             tx.commit();
         } catch (Exception e) {
@@ -61,12 +85,9 @@ public class JpaIndentDaoTest extends DBUnitTestCase {
         IDataSet expectedDataSet = getDataSet("com/scotch/simpleorders/dao/impl/indent/indent_add.xml");
         ITable expectedTable = expectedDataSet.getTable("indent");
 
-        ITable filteredActualTable = DefaultColumnFilter.includedColumnsTable(actualTable, expectedTable.getTableMetaData().getColumns());
-        //Assertion.assertEquals(expectedTable, filteredActualTable);
         Assertion.assertEquals(expectedTable, actualTable);
     }
 
-*/
 /*
 
     @Test
