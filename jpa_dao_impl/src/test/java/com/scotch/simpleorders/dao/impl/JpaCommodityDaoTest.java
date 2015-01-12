@@ -33,7 +33,7 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
 
         Commodity newCommodity = new Commodity();
         newCommodity.setTitle("topinambour");
-        //newCommodity.setDescription("password");
+        newCommodity.setDescription("");
 
         JpaCategoryDao categoryDao = new JpaCategoryDao();
         categoryDao.setEntityManager(entityManager);
@@ -53,7 +53,7 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
             throw new Exception(e);
         }
 
-        IDataSet databaseDataSet = getConnection().createDataSet();
+        IDataSet databaseDataSet = dbunitConnection.createDataSet();
         ITable actualTable = databaseDataSet.getTable("commodity");
 
         IDataSet expectedDataSet = getDataSet("com/scotch/simpleorders/dao/impl/commodity/commodity_add.xml");
@@ -61,7 +61,7 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
 
         Assertion.assertEquals(expectedTable, actualTable);
     }
-/*
+
     @Test
     public void testRemove() throws Exception {
         IDataSet setupDataSet = getDataSet("com/scotch/simpleorders/dao/impl/commodity/commodity.xml");
@@ -108,8 +108,11 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
 
         try {
             Commodity commodity = commodityDao.getById(1);
-            commodity.setName("VikaIvanova");
-            commodity.setPassword("vika77");
+            commodity.setTitle("earth apple");
+            JpaCategoryDao categoryDao = new JpaCategoryDao();
+            categoryDao.setEntityManager(entityManager);
+            Category category = categoryDao.getById(2);
+            commodity.setCategory(category);
             commodityDao.update(commodity);
             tx.commit();
         } catch (Exception e) {
@@ -139,17 +142,34 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
         JpaCommodityDao commodityDao = new JpaCommodityDao();
         commodityDao.setEntityManager(entityManager);
 
+        Commodity commodity;
+        Category category;
+
         try {
-            Commodity commodity = new Commodity();
-            commodity.setName("VikaIvanova");
-            commodity.setPassword("vika77");
-            commodity.setId(1);
+            commodity = commodityDao.getById(1);
+            JpaCategoryDao categoryDao = new JpaCategoryDao();
+            categoryDao.setEntityManager(entityManager);
+            category = categoryDao.getById(2);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            throw new Exception(e);
+        }
+
+        commodity.setTitle("earth apple");
+        commodity.setCategory(category);
+
+        tx = entityManager.getTransaction();
+        tx.begin();
+
+        try {
             commodityDao.update(commodity);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
             throw new Exception(e);
         }
+
 
         IDataSet databaseDataSet = getConnection().createDataSet();
         ITable actualTable = databaseDataSet.getTable("commodity");
@@ -160,9 +180,8 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
         Assertion.assertEquals(expectedTable, actualTable);
     }
 
-
     @Test
-    public void testGetALL() throws Exception {
+    public void testGetAll() throws Exception {
         IDataSet setupDataSet = getDataSet("com/scotch/simpleorders/dao/impl/commodity/commodity.xml");
 
         DatabaseOperation databaseOperation = new CompositeOperation(DatabaseOperation.CLEAN_INSERT, DBUnitTestCase.SEQUENCE_RESETTER);
@@ -183,17 +202,7 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
             throw new Exception(e);
         }
 
-        Commodity first = new Commodity();
-        first.setId(1); first.setName("Serious Sam"); first.setPassword("password");
-        Commodity second = new Commodity();
-        second.setId(2); second.setName("Wild Bill"); second.setPassword("password");
-
-
-        List<Commodity> expected = new ArrayList<Commodity>();
-        expected.add(first);
-        expected.add(second);
-
-        Assert.assertEquals(actual, expected);
+        Assert.assertEquals(actual.size(), 25);
     }
 
     @Test
@@ -210,19 +219,27 @@ public class JpaCommodityDaoTest extends DBUnitTestCase{
         commodityDao.setEntityManager(entityManager);
 
         Commodity actual;
+        Category actualCategory;
         try {
             actual = commodityDao.getById(1);
+            actualCategory = actual.getCategory(); //!!!!!!!!
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
             throw new Exception(e);
         }
 
-        Commodity expected = new Commodity();
-        expected.setId(1); expected.setName("Serious Sam"); expected.setPassword("password");
+        Assert.assertEquals(1, actual.getId());
+        Assert.assertEquals("pear", actual.getTitle());
+        Assert.assertEquals("", actual.getDescription());
 
-        Assert.assertEquals(expected, actual);
+
+        Category expectedCategory = new Category();
+        expectedCategory.setTitle("fruit");
+
+        Assert.assertEquals(expectedCategory, actualCategory); //todo: figure out what happening
+
+        Assert.assertEquals(new BigDecimal(1.0), actual.getPrice());
     }
-*/
 
 }

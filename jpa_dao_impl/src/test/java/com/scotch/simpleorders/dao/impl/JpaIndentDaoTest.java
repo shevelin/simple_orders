@@ -1,5 +1,6 @@
 package com.scotch.simpleorders.dao.impl;
 
+import com.scotch.simpleorders.entity.Customer;
 import com.scotch.simpleorders.entity.Indent;
 import org.dbunit.Assertion;
 import org.dbunit.dataset.IDataSet;
@@ -29,8 +30,16 @@ public class JpaIndentDaoTest extends DBUnitTestCase {
         //DatabaseOperation.CLEAN_INSERT.execute(dbunitConnection, setupDataSet);
 
         Indent newIndent = new Indent();
-        newIndent.setName("Jane Doe");
-        newIndent.setPassword("password");
+
+
+        Customer customer =
+
+        newIndent.setCustomer();
+        newIndent.setDescription();
+        newIndent.setStatus();
+        newIndent.setCommodities();
+
+
 
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
@@ -56,6 +65,9 @@ public class JpaIndentDaoTest extends DBUnitTestCase {
         //Assertion.assertEquals(expectedTable, filteredActualTable);
         Assertion.assertEquals(expectedTable, actualTable);
     }
+
+*/
+/*
 
     @Test
     public void testRemove() throws Exception {

@@ -7,13 +7,6 @@
         <column>price</column>
 
         <row>
-            <value>1</value>
-            <value>pear</value>
-            <value/>
-            <value>1</value>
-            <value>1.0</value>
-        </row>
-        <row>
             <value>2</value>
             <value>apple</value>
             <value/>
