@@ -1,5 +1,8 @@
 package com.scotch.simpleorders.dao.impl;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,6 +15,7 @@ import java.util.List;
  * @param <E> entity class
  * @param <K> type of primary key
  */
+
 public abstract class AbstractJpaDao<E, K> {
     /**
      * Field to store entity class.
@@ -56,6 +60,7 @@ public abstract class AbstractJpaDao<E, K> {
 
     public E add(E newEntity) {
         entityManager.persist(newEntity);
+//        entityManager.flush();
         return newEntity;
     }
 
